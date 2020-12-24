@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">study_01</string>
-    
+
     <string name="hello">hello World</string>
-    
+
+    <string name="login_title">여행기</string>
+    <string name="login_title_second">열심히 일 한 당신 떠나요!</string>
+
+    <string name="login">로그인</string>
+    <string name="signUP">회원 가입</string>
+    <string name="login_setting">본 서비스는 여행기의 내용을 회원끼리<br />"\n"
+        공유하는 서비스입니다. </string>
+    <string name="password">Password</string>
+    <string name="UserID">UserID</string>
+    <string name="pw_search">비밀번호 찾기</string>
+    <string name="btn_ok">확인</string>
+    <string name="login_searchtitle">비밀번호 찾기</string>
+    <string name="search_hit">아이디를 입력해주세요</string>
+    <string name="passwordconfirm">passwordConfirm</string>
+    <string name="signup_title">회원가입</string>
 </resources>
