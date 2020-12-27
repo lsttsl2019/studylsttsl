@@ -18,4 +18,9 @@
     <string name="search_hit">아이디를 입력해주세요</string>
     <string name="passwordconfirm">passwordConfirm</string>
     <string name="signup_title">회원가입</string>
+    <string name="nav_home">nav_home</string>
+    <string name="nav_todo">nav_todo</string>
+    <string name="nav_map">nav_map</string>
+    <string name="nav_message">nav_message</string>
+    <string name="nav_setting">nav_setting</string>
 </resources>

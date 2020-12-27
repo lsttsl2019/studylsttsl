@@ -3,6 +3,21 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.appspector.sdk'
+
+
+
+// Add AppSpector maven repository
+repositories {
+    maven {
+        url "https://maven.appspector.com/artifactory/android-sdk"
+    }
+}
+dependencies {
+    implementation "com.appspector:android-sdk:1.+"
+
+}
+
 
 android {
     compileSdkVersion 30
@@ -10,7 +25,7 @@ android {
 
     defaultConfig {
         applicationId "com.lsttsl.study_01"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -43,12 +58,9 @@ android {
     }
 
 
-
-
     buildFeatures { viewBinding = true }
 
     androidExtensions { experimental = true }
-
 
 
 }
@@ -60,6 +72,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.google.firebase:firebase-database-ktx'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -69,11 +82,9 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
 
-
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
-
 
 
     implementation 'androidx.room:room-runtime:2.2.5'
@@ -98,4 +109,11 @@ dependencies {
 //파이어 베이스
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    implementation 'com.google.firebase:firebase-firestore:22.0.1'
+
+
+    debugImplementation "com.appspector:android-sdk:1.+"
+    releaseImplementation "com.appspector:android-sdk-noop:1.+"
+
 }
