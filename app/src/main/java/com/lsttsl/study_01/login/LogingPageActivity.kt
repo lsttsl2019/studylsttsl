@@ -26,7 +26,7 @@ class LogingPageActivity : AppCompatActivity() {
         btnListener()
         loginChecking()
 
-        Log.d(TAG, "onCreate: ${AppConfigure.autoLoginCheck}")
+
     }
 
 

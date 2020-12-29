@@ -8,6 +8,7 @@ import android.os.Looper
 import android.util.Log
 import com.lsttsl.study_01.R
 import com.lsttsl.study_01.login.LoginMainPageActivity
+import com.lsttsl.study_01.login.LogingPageActivity
 import com.lsttsl.study_01.util.AppConfigure
 import com.lsttsl.study_01.util.G
 
@@ -18,13 +19,14 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
         autoLoginCheck()
+        Log.d(TAG, "onCreate: ${AppConfigure.autoLoginCheck}")
     }
 
     private fun autoLoginCheck() {
         if (AppConfigure.autoLoginCheck == G.loginAuto) {
 
             Handler(Looper.getMainLooper()).postDelayed({
-                val intent = Intent(applicationContext, LoginMainPageActivity::class.java)
+                val intent = Intent(applicationContext, MainActivity::class.java)
                 startActivity(intent)
                 finish()
 
