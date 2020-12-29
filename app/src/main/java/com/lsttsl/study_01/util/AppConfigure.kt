@@ -11,7 +11,8 @@ object AppConfigure {
 
     private enum class Keys {
         UserId,
-        UserPw
+        UserPw,
+        AutoLogin
     }
 
 
@@ -29,6 +30,11 @@ object AppConfigure {
     var loginUserPw: String
         get() = getString(Keys.UserPw.name, "") ?: ""
         set(value) = setString(Keys.UserPw.name, value)
+
+    var autoLoginCheck: String
+        get() = getString(Keys.AutoLogin.name, "") ?: ""
+        set(value) = setString(Keys.AutoLogin.name, value)
+
 
     private fun setString(keyName: String, value: String?) =
         preferences.edit().putString(keyName, value).apply()

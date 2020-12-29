@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lsttsl.study_01">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.lsttsl.study_01.util.Application"
@@ -12,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Study_01">
-        <activity android:name=".login.SignUpActivity">
-        </activity>
+        <activity android:name=".login.SignUpActivity"></activity>
         <activity android:name=".login.PwSearchActivity" />
         <activity android:name=".login.LogingPageActivity" />
         <activity android:name=".login.LoginMainPageActivity" />
-        <activity android:name=".activtiy.IntroActivity">
+        <activity
+            android:name=".activtiy.IntroActivity"
+            android:theme="@style/IntroTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

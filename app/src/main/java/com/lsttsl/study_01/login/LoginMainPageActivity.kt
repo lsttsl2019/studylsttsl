@@ -3,6 +3,7 @@ package com.lsttsl.study_01.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import com.lsttsl.study_01.databinding.ActivityLoginPageBinding
 
 class LoginMainPageActivity : AppCompatActivity() {
@@ -15,6 +16,7 @@ class LoginMainPageActivity : AppCompatActivity() {
         binding = ActivityLoginPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         btnListener()
+
     }
 
     private fun btnListener() {

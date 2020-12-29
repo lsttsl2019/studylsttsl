@@ -20,4 +20,11 @@
 
         
     </style>
+
+    <style name="IntroTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/intropage</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
 </resources>

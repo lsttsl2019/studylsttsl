@@ -3,11 +3,16 @@ package com.lsttsl.study_01.login
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.database.FirebaseDatabase
 import com.lsttsl.study_01.util.AppConfigure
 import com.lsttsl.study_01.databinding.ActivityPwSerachBinding
+import com.lsttsl.study_01.firebase.FirebaseManager
 
 class PwSearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPwSerachBinding
+    private val firebaseDatabase by lazy { FirebaseDatabase.getInstance() }
+    private val databaseReference by lazy { firebaseDatabase.reference }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +31,10 @@ class PwSearchActivity : AppCompatActivity() {
     private fun getPw() {
 
         binding.searchBtn.setOnClickListener {
-
-
-            if (binding.loginUserid.text.toString() == AppConfigure.loginUserId) {
-                Toast.makeText(
-                    applicationContext,
-                    "${AppConfigure.loginUserPw} 비밀번호입니다...",
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
-                Toast.makeText(applicationContext, "아이디가 틀립니다...", Toast.LENGTH_SHORT).show()
-
-            }
-
+            FirebaseManager(
+                databaseReference,
+                applicationContext
+            ).readGetUserPw(binding.loginUserid.text.toString())
 
         }
     }

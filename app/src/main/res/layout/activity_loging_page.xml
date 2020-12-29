@@ -41,9 +41,9 @@
         android:layout_marginBottom="12dp"
         android:backgroundTint="@color/white"
         android:hint="@string/UserID"
+        android:inputType="text"
         android:textColorHint="@color/white"
         android:textSize="24sp"
-        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@id/login_pw"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -58,14 +58,24 @@
         android:layout_marginEnd="30dp"
         android:backgroundTint="@color/white"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:textColorHint="@color/white"
         android:textSize="24sp"
-        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="lollipop" />
+
+    <CheckBox
+        android:id="@+id/login_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auto_login"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="@id/login_pw"
+        app:layout_constraintTop_toBottomOf="@id/login_pw" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_pw_search"
@@ -75,23 +85,24 @@
         android:text="@string/pw_search"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/login_checkBox"
         app:layout_constraintRight_toRightOf="@id/login_pw"
-        app:layout_constraintTop_toBottomOf="@id/login_pw" />
+        app:layout_constraintTop_toTopOf="@id/login_checkBox" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/button_round"
         android:text="@string/btn_ok"
         android:textColor="@color/login_bg"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/login_pw_search"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_pw_search" />
 </androidx.constraintlayout.widget.ConstraintLayout>

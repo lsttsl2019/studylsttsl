@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.lsttsl.study_01.R
 import com.lsttsl.study_01.login.LoginMainPageActivity
+import com.lsttsl.study_01.util.AppConfigure
+import com.lsttsl.study_01.util.G
 
 class IntroActivity : AppCompatActivity() {
 
@@ -14,22 +17,34 @@ class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
+        autoLoginCheck()
+    }
+
+    private fun autoLoginCheck() {
+        if (AppConfigure.autoLoginCheck == G.loginAuto) {
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(applicationContext, LoginMainPageActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }, NEXT_TIME)
 
 
-        // 추후 로그인 되어있으면 --> 바로 메인화면으로 넘겨준다~
-        Handler(Looper.getMainLooper()).postDelayed({
+        } else {
 
-            val intent = Intent(applicationContext, LoginMainPageActivity::class.java)
-            startActivity(intent)
-            finish()
-
-        }, NEXT_TIME)
+            Handler(Looper.getMainLooper()).postDelayed({
+                val intent = Intent(applicationContext, LoginMainPageActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, NEXT_TIME)
+        }
 
     }
 
 
     companion object {
         private const val NEXT_TIME = 3000L
-
+        private val TAG = IntroActivity::class.java.simpleName
     }
 }

@@ -4,6 +4,11 @@ class G {
 
     companion object {
         var loginCheck = false
+
+
+        val loginAuto = "Auto"
+        val loginManual = "Manual"
+
     }
 
 
