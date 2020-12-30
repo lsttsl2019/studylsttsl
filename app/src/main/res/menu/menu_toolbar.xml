@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/top_new"
-        android:title="최신순" />
+        android:title="@string/new_item" />
 
     <item
         android:id="@+id/top_old"
-        android:title="과거순" />
+        android:title="@string/old_item" />
 </menu>

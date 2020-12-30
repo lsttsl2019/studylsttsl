@@ -9,16 +9,14 @@ import com.lsttsl.study_01.databinding.HomeFragmentLayoutBinding
 
 class HomeFragment : Fragment() {
 
-    private  var binding: HomeFragmentLayoutBinding ?= null
+    private var binding: HomeFragmentLayoutBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = HomeFragmentLayoutBinding.inflate(inflater, container, false)
-
         return binding?.root
 
     }
@@ -32,7 +30,7 @@ class HomeFragment : Fragment() {
     companion object {
 
         fun instance() = HomeFragment()
-
+        private val TAG = HomeFragment::class.java.simpleName
     }
 
 }

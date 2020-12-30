@@ -19,7 +19,6 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
         autoLoginCheck()
-        Log.d(TAG, "onCreate: ${AppConfigure.autoLoginCheck}")
     }
 
     private fun autoLoginCheck() {

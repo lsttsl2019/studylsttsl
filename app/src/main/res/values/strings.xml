@@ -24,4 +24,11 @@
     <string name="nav_message">nav_message</string>
     <string name="nav_setting">nav_setting</string>
     <string name="auto_login">자동 로그인</string>
+    <string name="home">Home</string>
+    <string name="todo">Todo</string>
+    <string name="Map">Map</string>
+    <string name="Message">Message</string>
+    <string name="setting">Setting</string>
+    <string name="new_item">최신순</string>
+    <string name="old_item">과거순</string>
 </resources>
