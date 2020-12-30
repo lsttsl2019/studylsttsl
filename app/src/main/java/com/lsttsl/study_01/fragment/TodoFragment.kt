@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lsttsl.study_01.databinding.TodoFragmentLayoutBinding
+import com.lsttsl.study_01.recycelrViewItem.adapter.TodoAdapter
+import com.lsttsl.study_01.recycelrViewItem.item.TodoItem
 
-class TodoFragment  : Fragment(){
+class TodoFragment : Fragment() {
 
-    private  var binding: TodoFragmentLayoutBinding? = null
+    private var binding: TodoFragmentLayoutBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,6 +23,28 @@ class TodoFragment  : Fragment(){
         return binding?.root
     }
 
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val todoListInfo: ArrayList<TodoItem> = arguments!!.getParcelableArrayList("todoData")!!
+        createReView(todoListInfo)
+
+    }
+
+    private fun createReView(todoListInfo: ArrayList<TodoItem>) {
+        val todoAdapter = TodoAdapter(todoListInfo)
+
+        val linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+
+        binding?.todoRecyclerview?.layoutManager = linearLayoutManager
+        binding?.todoRecyclerview?.adapter = todoAdapter
+
+
+    }
+
+
     override fun onDestroyView() {
         binding = null
         super.onDestroyView()
@@ -28,6 +53,7 @@ class TodoFragment  : Fragment(){
     companion object {
 
         fun instance() = TodoFragment()
+        private val TAG = TodoFragment::class.simpleName
 
     }
 
