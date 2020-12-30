@@ -71,7 +71,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             binding.homePopUp -> {
-                Log.d(TAG, "여기 :저기 ")
                 val popup = PopupMenu(this, view, Gravity.CENTER)
                 val inflater = popup.menuInflater
                 val menu = popup.menu
@@ -108,34 +107,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         binding.toolbarTitle.text = "나의 여행기"
 
-//        val popup = PopupMenu(this, binding.homePopUp)
-//        val inflater = popup.menuInflater
-//        val menu = popup.menu
-//        inflater.inflate(R.menu.menu_toolbar, menu)
+
     }
 
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            android.R.id.home -> {
-//
-//                Log.d(TAG, "onOptionsItemSleected: home")
-//            }
-//
-//            R.id.top_new -> {
-//                //  최신 업로드된.. or 데이터상 날짜순
-//
-//                Log.d(TAG, "onOptionsItemSelected: new")
-//
-//            }
-//            R.id.top_old -> {
-//                // 가장 오래 업로드 .. 데이터상 날짜순..
-//                Log.d(TAG, "onOptionsItemSelected: old")
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-//
 
     private fun baseFragment() {
         val fragment = HomeFragment.instance()
