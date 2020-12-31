@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.AdapterListUpdateCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lsttsl.study_01.databinding.HomeFragmentLayoutBinding
+import com.lsttsl.study_01.databinding.HomeReyclerviewItemBinding
 import com.lsttsl.study_01.recycelrViewItem.adapter.HomeAdapter
 import com.lsttsl.study_01.recycelrViewItem.item.HomeItem
 
@@ -38,10 +40,11 @@ class HomeFragment : Fragment() {
 
     private fun createReyclerView(homeListInfo: ArrayList<HomeItem>) {
         val homeAdapter = HomeAdapter(homeListInfo)
-        val linearLayoutManager=LinearLayoutManager(context)
+        val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         binding?.homeRecyclerView?.layoutManager = linearLayoutManager
         binding?.homeRecyclerView?.adapter = homeAdapter
+
 
     }
 

@@ -27,8 +27,11 @@ class TodoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val todoListInfo: ArrayList<TodoItem> = arguments!!.getParcelableArrayList("todoData")!!
-        createReView(todoListInfo)
+        val todoListInfo: ArrayList<TodoItem>? = arguments!!.getParcelableArrayList("todoData")
+        if (todoListInfo != null) {
+            createReView(todoListInfo)
+        }
+
 
     }
 

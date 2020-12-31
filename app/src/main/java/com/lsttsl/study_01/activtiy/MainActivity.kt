@@ -65,8 +65,8 @@ class MainActivity : AppCompatActivity() {
     private fun todoDataList(): ArrayList<TodoItem> {
         val todoInfoList = ArrayList<TodoItem>()
         val stringTime = createDayTime()
-        todoInfoList.add(TodoItem("남이강", stringTime, R.drawable.img01))
-        todoInfoList.add(TodoItem("한강", stringTime, R.drawable.img02))
+        todoInfoList.add(TodoItem("남이강", stringTime, R.drawable.img02))
+        todoInfoList.add(TodoItem("한강", stringTime, R.drawable.img01))
         todoInfoList.add(TodoItem("뚝섬", stringTime, R.drawable.img03))
         todoInfoList.add(TodoItem("남산", stringTime, R.drawable.img04))
         todoInfoList.add(TodoItem("관악산", stringTime, R.drawable.img01))
@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
                 val fragment = TodoFragment.instance()
                 val bundle = Bundle()
                 bundle.putParcelableArrayList("todoData", todoDataList())
+                binding.toolbarTitle.text = "상세투여 내역"
                 fragment.arguments = bundle
 
                 createFragment(fragment)
@@ -187,6 +188,16 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(binding.baseFragment.id, fragment)
             .commitAllowingStateLoss()
 
+    }
+
+
+    fun changeFragment(fragment: Fragment) {
+        binding.toolbarTitle.text = "상세투어 내역"
+        createFragment(fragment)
+    }
+
+    fun getTodoItem(): ArrayList<TodoItem> {
+        return todoDataList()
     }
 
 
