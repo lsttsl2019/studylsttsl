@@ -9,6 +9,7 @@ import android.widget.PopupMenu
 
 import androidx.fragment.app.Fragment
 import com.lsttsl.study_01.R
+import com.lsttsl.study_01.activtiy.Nav.NavEvent
 import com.lsttsl.study_01.databinding.ActivityMainBinding
 import com.lsttsl.study_01.fragment.*
 import com.lsttsl.study_01.recycelrViewItem.item.HomeItem
@@ -21,6 +22,9 @@ import kotlin.collections.ArrayList
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navEvent: NavEvent
+    private var isPopupCheck = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,8 +37,11 @@ class MainActivity : AppCompatActivity() {
 
 
     private var isPopupVisibility: Boolean = false
-        set(value) = if (value) binding.homePopUp.visibility =
-            View.VISIBLE else binding.homePopUp.visibility = View.GONE
+        set(value) {
+            if (value) binding.homePopUp.visibility =
+                View.VISIBLE else binding.homePopUp.visibility = View.GONE
+            field = value
+        }
 
 
     private fun onBtnEvent() {
@@ -87,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         homeInfoList.add(HomeItem("남이섬", stringTime, R.drawable.img02))
         homeInfoList.add(HomeItem("여수", stringTime, R.drawable.img03))
         homeInfoList.add(HomeItem("전주", stringTime, R.drawable.img04))
-        homeInfoList.add(HomeItem("남해", stringTime, R.drawable.img01))
+        homeInfoList.add(HomeItem("남해", stringTime, R.drawable.img03))
 
         return homeInfoList
     }
@@ -97,40 +104,46 @@ class MainActivity : AppCompatActivity() {
             binding.homeLayout -> {
                 isPopupVisibility = true
                 val fragment = HomeFragment.instance()
+                fragment.tag
                 val homeListInfo: ArrayList<HomeItem> = homeDataList()
                 val bundle = Bundle()
+                navEvent.isNavHomeEvent = true
                 bundle.putParcelableArrayList("homeData", homeListInfo)
                 fragment.arguments = bundle
-                createFragment(fragment)
+                createFragment(fragment, HOME_TAG)
             }
 
             binding.todoLayout -> {
                 isPopupVisibility = false
+                navEvent.isNavTodoEvent = true
                 val fragment = TodoFragment.instance()
                 val bundle = Bundle()
                 bundle.putParcelableArrayList("todoData", todoDataList())
                 binding.toolbarTitle.text = "상세투여 내역"
                 fragment.arguments = bundle
 
-                createFragment(fragment)
+                createFragment(fragment, TODO_TAG)
             }
 
             binding.mapLayout -> {
                 isPopupVisibility = false
+                navEvent.isNavMapEvent = true
                 val fragment = MapFragment.instance()
-                createFragment(fragment)
+                createFragment(fragment, MAP_TAG)
 
             }
             binding.messageLayout -> {
                 isPopupVisibility = false
+                navEvent.isNavMessageEvent = true
                 val fragment = MessageFragment.instance()
-                createFragment(fragment)
+                createFragment(fragment, MESSAGE_TAG)
             }
 
             binding.settingLayout -> {
                 isPopupVisibility = false
+                navEvent.isNavSettingEvent = true
                 val fragment = SettingFragment.instance()
-                createFragment(fragment)
+                createFragment(fragment, SETTING_TAG)
             }
 
             binding.homePopUp -> {
@@ -144,11 +157,23 @@ class MainActivity : AppCompatActivity() {
                         R.id.top_new -> {
                             //  최신 업로드된.. or 데이터상 날짜순
                             Log.d(TAG, "onOptionsItemSelected: new")
-
+                            if (isPopupCheck) {
+                                (supportFragmentManager.findFragmentByTag(HOME_TAG) as HomeFragment).refreshHomeFragment(
+                                    isPopupCheck
+                                )
+                                isPopupCheck = false
+                            }
                         }
                         R.id.top_old -> {
                             // 가장 오래 업로드 .. 데이터상 날짜순..
                             Log.d(TAG, "onOptionsItemSelected: old")
+                            if (!isPopupCheck) {
+                                (supportFragmentManager.findFragmentByTag(HOME_TAG) as HomeFragment).refreshHomeFragment(
+                                    isPopupCheck
+                                )
+                                isPopupCheck = true
+                            }
+
 
                         }
                     }
@@ -173,19 +198,23 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun baseFragment() {
+        navEvent = NavEvent(binding)
         val fragment = HomeFragment.instance()
+
+        navEvent.isNavHomeEvent = true
         val homeListInfo: ArrayList<HomeItem> = homeDataList()
         val bundle = Bundle()
         isPopupVisibility = true
         bundle.putParcelableArrayList("homeData", homeListInfo)
         fragment.arguments = bundle
-        createFragment(fragment)
+
+        createFragment(fragment, HOME_TAG)
 
     }
 
-    private fun createFragment(fragment: Fragment) {
+    private fun createFragment(fragment: Fragment, tag: String) {
         binding.baseFragment.removeAllViewsInLayout()
-        supportFragmentManager.beginTransaction().replace(binding.baseFragment.id, fragment)
+        supportFragmentManager.beginTransaction().replace(binding.baseFragment.id, fragment, tag)
             .commitAllowingStateLoss()
 
     }
@@ -193,7 +222,8 @@ class MainActivity : AppCompatActivity() {
 
     fun changeFragment(fragment: Fragment) {
         binding.toolbarTitle.text = "상세투어 내역"
-        createFragment(fragment)
+        navEvent.isNavTodoEvent = true
+        createFragment(fragment, TODO_TAG)
     }
 
     fun getTodoItem(): ArrayList<TodoItem> {
@@ -203,6 +233,12 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = MainActivity::class.simpleName
+
+        private const val HOME_TAG = "Home"
+        private const val TODO_TAG = "Todo"
+        private const val MAP_TAG = "MAP"
+        private const val MESSAGE_TAG = "MESSAGE"
+        private const val SETTING_TAG = "SETTING"
     }
 
 
