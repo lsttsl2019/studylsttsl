@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.lsttsl.study_01.activtiy.MainActivity
 import com.lsttsl.study_01.databinding.TodoReyclerviewItemBinding
 import com.lsttsl.study_01.recycelrViewItem.item.TodoItem
 
@@ -25,7 +26,7 @@ class TodoAdapter(private val todoListInfo: ArrayList<TodoItem>) :
             Glide.with(mContext)
                 .asBitmap()
                 .load(resource)
-                .into(binding.todoImg)
+                .into(BitmapCustomImg(binding.todoImg))
         }
 
     }
@@ -54,6 +55,13 @@ class TodoAdapter(private val todoListInfo: ArrayList<TodoItem>) :
         holder.binding.todoTitle.text = item.title
         holder.binding.todoDay.text = item.day
         holder.updateImage(item.img)
+
+        holder.binding.todoLayout.setOnClickListener {
+            if (mContext is MainActivity) {
+                (mContext as MainActivity).todoItemOnClickAnimation(true)
+            }
+        }
+
 
     }
 

@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AnimationSet
+import android.view.animation.TranslateAnimation
 import android.widget.PopupMenu
 
 import androidx.fragment.app.Fragment
@@ -53,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         binding.settingLayout.setOnClickListener(onClickListener)
         binding.homePopUp.setOnClickListener(onClickListener)
         binding.toolbarBack.setOnClickListener(onClickListener)
+        binding.todoPlayer.playerClose.setOnClickListener(onClickListener)
 
 
     }
@@ -183,6 +187,10 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+            binding.todoPlayer.playerClose -> {
+                todoItemOnClickAnimation(false)
+            }
+
         }
     }
 
@@ -237,6 +245,27 @@ class MainActivity : AppCompatActivity() {
 
     fun getTodoItem(): ArrayList<TodoItem> {
         return todoDataList()
+    }
+
+    fun todoItemOnClickAnimation(check: Boolean) {
+        val aniSet = AnimationSet(true)
+        val aniOut = AnimationSet(true)
+        aniSet.interpolator = AccelerateInterpolator()
+        val transInAni = TranslateAnimation(0f, 0f, 100.0f, 0f)
+        val transOutAni = TranslateAnimation(0f, 0f, 0f, 300.0f);
+        transInAni.duration = 500
+        transOutAni.duration = 500
+        aniSet.addAnimation(transInAni)
+        aniOut.addAnimation(transOutAni)
+        if (check) {
+            binding.todoPlayerLayout.animation = aniSet
+            binding.todoPlayerLayout.visibility = View.VISIBLE
+        } else {
+            binding.todoPlayerLayout.animation = aniOut
+            binding.todoPlayerLayout.visibility = View.GONE
+        }
+
+
     }
 
 
