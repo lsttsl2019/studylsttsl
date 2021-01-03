@@ -102,15 +102,7 @@ class MainActivity : AppCompatActivity() {
     private val onClickListener = View.OnClickListener { view ->
         when (view) {
             binding.homeLayout -> {
-                isPopupVisibility = true
-                val fragment = HomeFragment.instance()
-                fragment.tag
-                val homeListInfo: ArrayList<HomeItem> = homeDataList()
-                val bundle = Bundle()
-                navEvent.isNavHomeEvent = true
-                bundle.putParcelableArrayList("homeData", homeListInfo)
-                fragment.arguments = bundle
-                createFragment(fragment, HOME_TAG)
+                homeFragmentCreate()
             }
 
             binding.todoLayout -> {
@@ -183,10 +175,27 @@ class MainActivity : AppCompatActivity() {
             }
 
             binding.toolbarBack -> {
-                finishAffinity()
+                if (binding.homeLayout.visibility == View.VISIBLE) {
+                    homeFragmentCreate()
+                } else {
+                    finishAffinity()
+                }
+
             }
 
         }
+    }
+
+    private fun homeFragmentCreate() {
+        isPopupVisibility = true
+        val fragment = HomeFragment.instance()
+        val homeListInfo: ArrayList<HomeItem> = homeDataList()
+        val bundle = Bundle()
+        binding.toolbarTitle.text = "나의 여행기"
+        navEvent.isNavHomeEvent = true
+        bundle.putParcelableArrayList("homeData", homeListInfo)
+        fragment.arguments = bundle
+        createFragment(fragment, HOME_TAG)
     }
 
 
