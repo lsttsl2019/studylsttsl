@@ -6,17 +6,22 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AccelerateInterpolator
+import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.TranslateAnimation
 import android.widget.PopupMenu
+import androidx.constraintlayout.widget.ConstraintLayout
 
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.lsttsl.study_01.R
 import com.lsttsl.study_01.activtiy.Nav.NavEvent
+import com.lsttsl.study_01.activtiy.player.NavPlayer
 import com.lsttsl.study_01.databinding.ActivityMainBinding
 import com.lsttsl.study_01.fragment.*
 import com.lsttsl.study_01.recycelrViewItem.item.HomeItem
 import com.lsttsl.study_01.recycelrViewItem.item.TodoItem
+import com.lsttsl.study_01.util.dpToPx
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navEvent: NavEvent
     private var isPopupCheck = false
+    private var exoPlayer: NavPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         baseFragment()
         createToolBar()
         onBtnEvent()
+
     }
 
 
@@ -57,6 +64,11 @@ class MainActivity : AppCompatActivity() {
         binding.homePopUp.setOnClickListener(onClickListener)
         binding.toolbarBack.setOnClickListener(onClickListener)
         binding.todoPlayer.playerClose.setOnClickListener(onClickListener)
+
+        binding.todoPlayer.playerPlaying.setOnClickListener(onClickListener)
+        binding.todoPlayer.playerPause.setOnClickListener(onClickListener)
+
+        binding.todoPlayer.playerTitle.isSelected = true
 
 
     }
@@ -116,6 +128,7 @@ class MainActivity : AppCompatActivity() {
                 val bundle = Bundle()
                 bundle.putParcelableArrayList("todoData", todoDataList())
                 binding.toolbarTitle.text = "상세투여 내역"
+                binding.homePopUp.visibility = View.VISIBLE
                 fragment.arguments = bundle
 
                 createFragment(fragment, TODO_TAG)
@@ -191,6 +204,17 @@ class MainActivity : AppCompatActivity() {
                 todoItemOnClickAnimation(false)
             }
 
+            binding.todoPlayer.playerPlaying -> {
+
+                exoPlayer?.playing()
+            }
+
+            binding.todoPlayer.playerPause -> {
+
+
+                exoPlayer?.pause()
+            }
+
         }
     }
 
@@ -239,6 +263,7 @@ class MainActivity : AppCompatActivity() {
 
     fun changeFragment(fragment: Fragment) {
         binding.toolbarTitle.text = "상세투어 내역"
+        binding.homePopUp.visibility = View.GONE
         navEvent.isNavTodoEvent = true
         createFragment(fragment, TODO_TAG)
     }
@@ -257,12 +282,61 @@ class MainActivity : AppCompatActivity() {
         transOutAni.duration = 500
         aniSet.addAnimation(transInAni)
         aniOut.addAnimation(transOutAni)
+
+        val todoBinding =
+            (supportFragmentManager.findFragmentByTag(TODO_TAG) as TodoFragment).returnTodoBinding()
+        val layoutLP = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.MATCH_PARENT,
+            ConstraintLayout.LayoutParams.MATCH_PARENT
+        )
+
         if (check) {
-            binding.todoPlayerLayout.animation = aniSet
-            binding.todoPlayerLayout.visibility = View.VISIBLE
+            if (binding.todoPlayerLayout.visibility == View.GONE) {
+                aniSet.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(p0: Animation?) {
+
+                    }
+
+                    override fun onAnimationEnd(p0: Animation?) {
+                        layoutLP.bottomMargin = dpToPx(100)
+                        todoBinding?.todoRecyclerview?.layoutParams = layoutLP
+                    }
+
+                    override fun onAnimationRepeat(p0: Animation?) {
+
+                    }
+
+                })
+
+                binding.todoPlayerLayout.animation = aniSet
+                binding.todoPlayerLayout.visibility = View.VISIBLE
+
+                exoPlayer = NavPlayer(binding, applicationContext)
+                exoPlayer?.initializePlayer()
+            }
+
         } else {
-            binding.todoPlayerLayout.animation = aniOut
-            binding.todoPlayerLayout.visibility = View.GONE
+            if (binding.todoPlayerLayout.visibility == View.VISIBLE) {
+                aniOut.setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationStart(p0: Animation?) {
+                        layoutLP.bottomMargin = dpToPx(0)
+                        todoBinding?.todoRecyclerview?.layoutParams = layoutLP
+                    }
+
+                    override fun onAnimationEnd(p0: Animation?) {
+
+                    }
+
+                    override fun onAnimationRepeat(p0: Animation?) {
+                    }
+                })
+
+                binding.todoPlayerLayout.animation = aniOut
+                binding.todoPlayerLayout.visibility = View.GONE
+                exoPlayer?.releasePlayer()
+                exoPlayer = null
+            }
+
         }
 
 

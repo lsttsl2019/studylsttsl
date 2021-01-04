@@ -47,6 +47,10 @@ class TodoFragment : Fragment() {
 
     }
 
+    fun returnTodoBinding() : TodoFragmentLayoutBinding? {
+        return binding
+    }
+
 
     override fun onDestroyView() {
         binding = null

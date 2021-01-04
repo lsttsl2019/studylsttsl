@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
@@ -57,9 +58,12 @@ class TodoAdapter(private val todoListInfo: ArrayList<TodoItem>) :
         holder.updateImage(item.img)
 
         holder.binding.todoLayout.setOnClickListener {
+
             if (mContext is MainActivity) {
                 (mContext as MainActivity).todoItemOnClickAnimation(true)
             }
+
+
         }
 
 

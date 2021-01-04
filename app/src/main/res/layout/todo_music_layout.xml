@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/player_title"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
@@ -80,6 +80,17 @@
             android:backgroundTint="@color/white"
             app:layout_constraintRight_toLeftOf="@id/player_next"
             app:layout_constraintTop_toTopOf="@id/player_close" />
+
+        <ProgressBar
+            android:id="@+id/player_progress"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:indeterminateTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/player_playing"
+            app:layout_constraintLeft_toLeftOf="@id/player_playing"
+            app:layout_constraintRight_toRightOf="@id/player_playing"
+            app:layout_constraintTop_toTopOf="@id/player_playing" />
+
 
         <ImageView
             android:id="@+id/player_previous"
