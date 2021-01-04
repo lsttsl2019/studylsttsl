@@ -31,4 +31,8 @@
     <string name="setting">Setting</string>
     <string name="new_item">최신순</string>
     <string name="old_item">과거순</string>
+    <string name="audio_top_text">오디오 파일이 있습니다.</string>
+    <string name="phNum">전화번호</string>
+    <string name="oneText">한줄설명</string>
+    <string name="detail_textview_ex">상세설명</string>
 </resources>

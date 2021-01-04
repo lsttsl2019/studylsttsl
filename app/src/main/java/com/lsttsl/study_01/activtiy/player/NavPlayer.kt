@@ -114,10 +114,7 @@ class NavPlayer(private val binding: ActivityMainBinding, private val context: C
                     binding.todoPlayer.playerPlaying.visibility = View.INVISIBLE
                 }
                 Player.STATE_ENDED -> {
-                    player.pause()
-                    // 다시 재생누르면 처음부터 재생할수있도록
-                    binding.todoPlayer.playerPlaying.visibility = View.VISIBLE
-                    binding.todoPlayer.playerPause.visibility = View.INVISIBLE
+                    pause()
                     player.seekTo(0L)
 
                 }

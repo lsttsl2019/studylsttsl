@@ -71,6 +71,8 @@ class MainActivity : AppCompatActivity() {
         binding.todoPlayer.playerTitle.isSelected = true
 
 
+        binding.todoPlayer.playerList.setOnClickListener(onClickListener)
+
     }
 
 
@@ -210,9 +212,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             binding.todoPlayer.playerPause -> {
-
-
                 exoPlayer?.pause()
+            }
+
+            binding.todoPlayer.playerList -> {
+                val fragment = TodoDetailFragment.instance()
+                todoItemOnClickAnimation(false)
+                binding.toolbar.visibility = View.GONE
+                createFragment(fragment, TODO_DETAIL_TAG)
             }
 
         }
@@ -351,6 +358,9 @@ class MainActivity : AppCompatActivity() {
         private const val MAP_TAG = "MAP"
         private const val MESSAGE_TAG = "MESSAGE"
         private const val SETTING_TAG = "SETTING"
+
+
+        private const val TODO_DETAIL_TAG = "TodoDetail"
     }
 
 

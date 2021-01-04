@@ -16,4 +16,5 @@
 
     <color name="login_bg">#0EAA2F</color>
     <color name="Grey_800">#424242</color>
+    <color name="Grey_600">#595858</color>
 </resources>

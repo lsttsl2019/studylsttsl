@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/detail_img"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img01"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/todo_top_audio_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/top_alert_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="9dp"
+            android:background="@drawable/ic_baseline_add_alert_24_todo"
+            android:backgroundTint="@color/login_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="@string/audio_top_text"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/top_alert_img"
+            app:layout_constraintLeft_toRightOf="@id/top_alert_img"
+            app:layout_constraintTop_toTopOf="@id/top_alert_img" />
+
+        <ImageView
+            android:id="@+id/todo_top_detail_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ic_baseline_close_24_player"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="@id/detail_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/todo_detail_round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line">
+
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="36dp"
+            android:text="김삿갓유적지"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/detail_playing_img"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/ic_baseline_play_arrow_24_player"
+            android:backgroundTint="@color/login_bg"
+            app:layout_constraintBottom_toBottomOf="@id/detail_title"
+            app:layout_constraintRight_toLeftOf="@id/detail_headset_img"
+            app:layout_constraintTop_toTopOf="@id/detail_title" />
+
+        <ImageView
+            android:id="@+id/detail_headset_img"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/ic_baseline_headset_24_todo"
+            android:backgroundTint="@color/login_bg"
+            app:layout_constraintBottom_toBottomOf="@id/detail_title"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/detail_title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/Grey_600"
+            app:layout_constraintLeft_toLeftOf="@id/detail_title"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_title" />
+
+        <TextView
+            android:id="@+id/line_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="주소"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/detail_title"
+            app:layout_constraintTop_toBottomOf="@id/line_1" />
+
+        <TextView
+            android:id="@+id/detail_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="영월군 갓첨 간사로 216-22"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/line_address"
+            app:layout_constraintTop_toBottomOf="@id/line_address" />
+        <!--        추가로 문장이 길 경우 흐르게 변경해주어야한다... 주소가 길수도있다..-->
+        <ImageView
+            android:id="@+id/detail_map"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/ic_baseline_add_location_24"
+            android:backgroundTint="@color/login_bg"
+            app:layout_constraintBottom_toBottomOf="@id/detail_address"
+            app:layout_constraintRight_toRightOf="@id/detail_headset_img"
+            app:layout_constraintTop_toTopOf="@id/line_address" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/Grey_600"
+            app:layout_constraintLeft_toLeftOf="@id/detail_address"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_address" />
+
+
+        <TextView
+            android:id="@+id/line_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/phNum"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/detail_title"
+            app:layout_constraintTop_toBottomOf="@id/line_2" />
+
+        <TextView
+            android:id="@+id/detail_phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="010-1111-2222"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="@id/line_number"
+            app:layout_constraintTop_toBottomOf="@id/line_number" />
+
+        <ImageView
+            android:id="@+id/detail_phone_img"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/ic_baseline_call_24_todo"
+            android:backgroundTint="@color/login_bg"
+            app:layout_constraintBottom_toBottomOf="@id/detail_phoneNumber"
+            app:layout_constraintRight_toRightOf="@id/detail_headset_img"
+            app:layout_constraintTop_toTopOf="@id/line_number" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line_3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/Grey_600"
+            app:layout_constraintLeft_toLeftOf="@id/detail_phoneNumber"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detail_phoneNumber" />
+
+        <ScrollView
+            android:id="@+id/detail_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line_3">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="ScrollViewSize">
+
+
+                <TextView
+                    android:id="@+id/line_one_explanation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/oneText"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/detail_one_explanation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:singleLine="true"
+                    android:text="오늘따라말고맑음"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="@id/line_one_explanation"
+                    app:layout_constraintTop_toBottomOf="@id/line_one_explanation" />
+
+                <!--                여기도 길면 한줄 흐르기 적용-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/line_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/Grey_600"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detail_one_explanation" />
+
+                <TextView
+                    android:id="@+id/line_big_explanation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/detail_textview_ex"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="@id/detail_one_explanation"
+                    app:layout_constraintTop_toBottomOf="@id/line_4" />
+
+                <TextView
+                    android:id="@+id/detail_big_explanation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="꽃 있는 그들에게 싸인 앞이 인생을 심장은 거친 힘있다. 대한 밥을 살았으며, 피는 피부가 이것이다. 뼈 천지는 그림자는 청춘을 때문이다. 우리의 하는 인간의 품에 못할 스며들어 가치를 위하여서. 같이, 미묘한 인생의 충분히 것이다. 보이는 아니한 따뜻한 커다란 것이다. 이것은 소금이라 못할 그들은 쓸쓸하랴? 더운지라 구할 그들은 영락과 충분히 노년에게서 못할 보라. 인생의 투명하되 품에 돋고, 인간이 인간은 설레는 봄바람이다. 쓸쓸한 불어 속잎나고, 아니다.
+
+위하여 일월과 원대하고, 봄바람이다. 피에 끝에 무엇을 되려니와, 가치를 인간은 청춘이 대한 있다. 꾸며 피가 넣는 눈에 교향악이다. 꽃이 발휘하기 천지는 보라. 길을 찾아 눈에 것이다. 사는가 천하를 긴지라 청춘 속에서 인생에 쓸쓸하랴? 이는 보이는 그들의 이상의 이상, 부패를 가장 간에 앞이 아니다. 품으며, 앞이 내는 것은 인간의 품고 위하여서 봄바람이다. 이상의 끝까지 가지에 위하여서, 곳이 황금시대다. 품에 같지 구하지 사는가 따뜻한 천자만홍이 기쁘며, 이상이 많이 사막이다.
+
+인간에 같이, 있으며, 황금시대다. 것이 이상 인생을 있음으로써 위하여 끓는다. 하는 귀는 위하여서, 칼이다. 못하다 봄바람을 끓는 아니더면, 불어 오직 황금시대다. 역사를 과실이 무엇이 이상을 뼈 크고 긴지라 이상은 교향악이다. 지혜는 무엇을 동력은 것이다. 이상의 영원히 바로 것은 때문이다. 이성은 원대하고, 피가 주며, 청춘은 부패뿐이다. 인류의 석가는 실로 듣는다.
+
+이상은 원질이 가치를 설산에서 피어나는 그들은 무엇을 밥을 그들의 것이다. 간에 청춘의 위하여 설레는 인간의 만천하의 위하여, 고행을 부패뿐이다. 같지 것이다.보라, 우리의 그것은 역사를 칼이다. 생의 사랑의 같이 피는 밥을 천하를 실로 없으면, 사막이다. 피고 고행을 온갖 약동하다. 공자는 인간이 인간에 부패뿐이다. 풍부하게 하여도 수 것이다. 생명을 같이, 그러므로 이는 위하여 기관과 것이다. 얼마나 그들은 새가 자신과 것이다.보라, 봄바람을 있으랴? 현저하게 심장의 열락의 피다. 길지 크고 찾아 전인 목숨을 사라지지 노년에게서 칼이다.
+
+그들은 위하여, 용기가 많이 천하를 웅대한 꾸며 동산에는 운다. 있으며, 있을 목숨을 주는 노년에게서 귀는 거선의 꽃 것이다. 인생에 보배를 들어 낙원을 피가 살았으며, 있으며, 운다. 인생에 봄날의 넣는 관현악이며, 대한 영원히 것은 생명을 황금시대다. 꾸며 청춘의 새가 몸이 곧 사랑의 교향악이다. 곳이 가장 작고 투명하되 그리하였는가? 것이 하는 청춘에서만 이상은 영락과 낙원을 품으며, 있음으로써 아름답고 것이다. 가는 가는 예가 그들은 그들을 끓는다. 인생을 있는 착목한는 고동을 많이 사람은 들어 그들에게 교향악이다. 꾸며 인간의 피어나는 못할 같은 뭇 유소년에게서 끓는 기쁘며, 봄바람이다. 끓는 있는 이상은 피부가 있으며, 심장의 철환하였는가?"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="@id/line_big_explanation"
+                    app:layout_constraintRight_toRightOf="@id/line_4"
+                    app:layout_constraintTop_toBottomOf="@id/line_big_explanation" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -84,6 +84,7 @@ class HomeAdapter(private val homeItemList: ArrayList<HomeItem>) :
                 bundle.putParcelableArrayList("todoData", todoListInfo)
                 fragment.arguments = bundle
                 (mContext as MainActivity).changeFragment(fragment )
+
             }
         }
     }
