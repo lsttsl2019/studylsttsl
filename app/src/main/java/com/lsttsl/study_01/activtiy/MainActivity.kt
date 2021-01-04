@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // todofragment 각각 마다 플레이가 들어가기 때문에 체크 기
+     var isTodoTagChange = false
 
     private var isPopupVisibility: Boolean = false
         set(value) {
@@ -133,6 +135,8 @@ class MainActivity : AppCompatActivity() {
                 binding.homePopUp.visibility = View.VISIBLE
                 fragment.arguments = bundle
 
+                isTodoTagChange = true
+
                 createFragment(fragment, TODO_TAG)
             }
 
@@ -203,7 +207,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             binding.todoPlayer.playerClose -> {
-                todoItemOnClickAnimation(false)
+                if (isTodoTagChange) {
+                    todoItemOnClickAnimation(false)
+                } else {
+                    (supportFragmentManager.findFragmentByTag(TODO_DETAIL_TAG) as TodoDetailFragment).isPause()
+                }
             }
 
             binding.todoPlayer.playerPlaying -> {
@@ -219,6 +227,7 @@ class MainActivity : AppCompatActivity() {
                 val fragment = TodoDetailFragment.instance()
                 todoItemOnClickAnimation(false)
                 binding.toolbar.visibility = View.GONE
+                isTodoTagChange = false
                 createFragment(fragment, TODO_DETAIL_TAG)
             }
 
@@ -272,6 +281,7 @@ class MainActivity : AppCompatActivity() {
         binding.toolbarTitle.text = "상세투어 내역"
         binding.homePopUp.visibility = View.GONE
         navEvent.isNavTodoEvent = true
+        isTodoTagChange = true
         createFragment(fragment, TODO_TAG)
     }
 
@@ -279,29 +289,36 @@ class MainActivity : AppCompatActivity() {
         return todoDataList()
     }
 
-    fun todoItemOnClickAnimation(check: Boolean) {
+
+    private fun aniSetCreate(): AnimationSet {
         val aniSet = AnimationSet(true)
-        val aniOut = AnimationSet(true)
         aniSet.interpolator = AccelerateInterpolator()
         val transInAni = TranslateAnimation(0f, 0f, 100.0f, 0f)
-        val transOutAni = TranslateAnimation(0f, 0f, 0f, 300.0f);
         transInAni.duration = 500
-        transOutAni.duration = 500
         aniSet.addAnimation(transInAni)
-        aniOut.addAnimation(transOutAni)
+        return aniSet
+    }
 
+    private fun aniOutCreate(): AnimationSet {
+        val aniOut = AnimationSet(true)
+        val transOutAni = TranslateAnimation(0f, 0f, 0f, 300.0f);
+        transOutAni.duration = 500
+        aniOut.addAnimation(transOutAni)
+        return aniOut
+    }
+
+    fun todoItemOnClickAnimation(check: Boolean) {
         val todoBinding =
             (supportFragmentManager.findFragmentByTag(TODO_TAG) as TodoFragment).returnTodoBinding()
         val layoutLP = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.MATCH_PARENT,
             ConstraintLayout.LayoutParams.MATCH_PARENT
         )
-
         if (check) {
             if (binding.todoPlayerLayout.visibility == View.GONE) {
+                val aniSet = aniSetCreate()
                 aniSet.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(p0: Animation?) {
-
                     }
 
                     override fun onAnimationEnd(p0: Animation?) {
@@ -310,20 +327,16 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onAnimationRepeat(p0: Animation?) {
-
                     }
-
                 })
-
                 binding.todoPlayerLayout.animation = aniSet
                 binding.todoPlayerLayout.visibility = View.VISIBLE
-
                 exoPlayer = NavPlayer(binding, applicationContext)
                 exoPlayer?.initializePlayer()
             }
-
         } else {
             if (binding.todoPlayerLayout.visibility == View.VISIBLE) {
+                val aniOut = aniOutCreate()
                 aniOut.setAnimationListener(object : Animation.AnimationListener {
                     override fun onAnimationStart(p0: Animation?) {
                         layoutLP.bottomMargin = dpToPx(0)
@@ -343,7 +356,24 @@ class MainActivity : AppCompatActivity() {
                 exoPlayer?.releasePlayer()
                 exoPlayer = null
             }
+        }
+    }
 
+
+    fun todoDetailFragmentOnClickAnimation(check: Boolean) {
+        if (check) {
+            val aniSet = aniSetCreate()
+            binding.todoPlayerLayout.animation = aniSet
+            binding.todoPlayerLayout.visibility = View.VISIBLE
+            exoPlayer = NavPlayer(binding, applicationContext)
+            exoPlayer?.initializePlayer()
+        } else {
+          //  (supportFragmentManager.findFragmentByTag(TODO_DETAIL_TAG) as TodoDetailFragment).
+            val aniOut = aniOutCreate()
+            binding.todoPlayerLayout.animation = aniOut
+            binding.todoPlayerLayout.visibility = View.GONE
+            exoPlayer?.releasePlayer()
+            exoPlayer = null
         }
 
 
