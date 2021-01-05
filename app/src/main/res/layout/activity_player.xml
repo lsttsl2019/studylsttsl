@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activtiy.PlayerActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/player_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/nav_top_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/player_top_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비디오 보기"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/play_viewpager"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/player_top_layout"
+        app:layout_constraintBottom_toTopOf="@id/play_left_time"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"/>
+
+
+    <TextView
+        android:id="@+id/play_left_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="00:00"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintRight_toLeftOf="@id/tv_line"
+        app:layout_constraintBottom_toBottomOf="@id/play_right_time"
+        app:layout_constraintTop_toTopOf="@id/play_right_time"/>
+
+    <TextView
+        android:id="@+id/play_right_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toTopOf="@id/player_seekbar"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintRight_toRightOf="@id/player_seekbar" />
+
+    <TextView
+        android:id="@+id/tv_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toLeftOf="@id/play_right_time"
+        app:layout_constraintBottom_toBottomOf="@id/play_right_time"
+        app:layout_constraintTop_toTopOf="@id/play_right_time"
+        android:textColor="@color/black"
+        android:text="/"
+        android:textSize="12sp"
+        android:layout_marginEnd="4dp"/>
+
+    <SeekBar
+        android:id="@+id/player_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:progressDrawable="@drawable/player_seekbar"
+        android:thumb="@drawable/player_seekbar_thumb"
+        app:layout_constraintBottom_toTopOf="@id/player_bottom_nav_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <FrameLayout
+        android:id="@+id/player_bottom_nav_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <include
+            android:id="@+id/play_bottom_nav"
+            layout="@layout/player_bottom_nav" />
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

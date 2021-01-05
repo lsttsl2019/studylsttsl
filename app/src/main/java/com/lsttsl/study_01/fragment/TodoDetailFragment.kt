@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.lsttsl.study_01.activtiy.MainActivity
+import com.lsttsl.study_01.activtiy.PlayerActivity
 import com.lsttsl.study_01.databinding.TodoFragmentDetailBinding
 
 class TodoDetailFragment : Fragment() {
@@ -62,6 +63,7 @@ class TodoDetailFragment : Fragment() {
         binding?.todoTopDetailClose?.setOnClickListener(onClickListener)
         binding?.detailPlayingImg?.setOnClickListener(onClickListener)
         binding?.detailPauseImg?.setOnClickListener(onClickListener)
+        binding?.detailHeadsetImg?.setOnClickListener(onClickListener)
     }
 
 
@@ -82,8 +84,20 @@ class TodoDetailFragment : Fragment() {
             binding?.detailPauseImg -> {
                 isPlayPauseCheck = false
             }
+            binding?.detailHeadsetImg -> {
+                goToPlayer()
+            }
 
         }
+    }
+
+
+    fun goToPlayer(){
+        if (isPlayPauseCheck) {
+            isPlayPauseCheck = false
+        }
+        val intent = Intent(context, PlayerActivity::class.java)
+        startActivity(intent)
     }
 
 

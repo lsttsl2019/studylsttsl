@@ -41,8 +41,13 @@ class NavPlayer(private val binding: ActivityMainBinding, private val context: C
                     currentPosition = player.currentPosition.toInt() / 1000
                 }
                 binding.todoPlayer.playerLeftTime.text = currentPosition.toTimeString(true)
-
+                binding.todoPlayer.playerPlaying.visibility = View.INVISIBLE
+                binding.todoPlayer.playerPause.visibility = View.VISIBLE
                 autoCurrentTimeHandler.postDelayed(autoCurrentRunnable, CURRENT_CHECK_TIME)
+
+            }else{
+                binding.todoPlayer.playerPlaying.visibility = View.VISIBLE
+                binding.todoPlayer.playerPause.visibility = View.INVISIBLE
             }
 
 
@@ -63,16 +68,14 @@ class NavPlayer(private val binding: ActivityMainBinding, private val context: C
 
     fun playing() {
         player.play()
-        binding.todoPlayer.playerPlaying.visibility = View.INVISIBLE
-        binding.todoPlayer.playerPause.visibility = View.VISIBLE
+
         isCurrentTime = true
     }
 
     fun pause() {
         player.pause()
         isCurrentTime = false
-        binding.todoPlayer.playerPlaying.visibility = View.VISIBLE
-        binding.todoPlayer.playerPause.visibility = View.INVISIBLE
+
     }
 
     fun releasePlayer() {

@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // todofragment 각각 마다 플레이가 들어가기 때문에 체크 기
-     var isTodoTagChange = false
+    var isTodoTagChange = false
 
     private var isPopupVisibility: Boolean = false
         set(value) {
@@ -224,11 +224,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             binding.todoPlayer.playerList -> {
-                val fragment = TodoDetailFragment.instance()
-                todoItemOnClickAnimation(false)
-                binding.toolbar.visibility = View.GONE
-                isTodoTagChange = false
-                createFragment(fragment, TODO_DETAIL_TAG)
+                if (isTodoTagChange) {
+                    val fragment = TodoDetailFragment.instance()
+                    todoItemOnClickAnimation(false)
+                    binding.toolbar.visibility = View.GONE
+                    isTodoTagChange = false
+                    createFragment(fragment, TODO_DETAIL_TAG)
+                } else {
+                    (supportFragmentManager.findFragmentByTag(TODO_DETAIL_TAG) as TodoDetailFragment).goToPlayer()
+                }
+
             }
 
         }
@@ -368,7 +373,7 @@ class MainActivity : AppCompatActivity() {
             exoPlayer = NavPlayer(binding, applicationContext)
             exoPlayer?.initializePlayer()
         } else {
-          //  (supportFragmentManager.findFragmentByTag(TODO_DETAIL_TAG) as TodoDetailFragment).
+            //  (supportFragmentManager.findFragmentByTag(TODO_DETAIL_TAG) as TodoDetailFragment).
             val aniOut = aniOutCreate()
             binding.todoPlayerLayout.animation = aniOut
             binding.todoPlayerLayout.visibility = View.GONE

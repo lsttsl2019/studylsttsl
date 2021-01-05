@@ -5,13 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.lsttsl.study_01.util.Application"
+        android:name=".util.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Study_01">
+        <activity android:name=".activtiy.PlayerActivity"></activity>
         <activity android:name=".login.SignUpActivity" />
         <activity android:name=".login.PwSearchActivity" />
         <activity android:name=".login.LogingPageActivity" />
