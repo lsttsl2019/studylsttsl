@@ -13,10 +13,9 @@ import android.widget.PopupMenu
 import androidx.constraintlayout.widget.ConstraintLayout
 
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.lsttsl.study_01.R
 import com.lsttsl.study_01.activtiy.Nav.NavEvent
-import com.lsttsl.study_01.activtiy.player.NavPlayer
+import com.lsttsl.study_01.activtiy.player.NavTodoPlayer
 import com.lsttsl.study_01.databinding.ActivityMainBinding
 import com.lsttsl.study_01.fragment.*
 import com.lsttsl.study_01.recycelrViewItem.item.HomeItem
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navEvent: NavEvent
     private var isPopupCheck = false
-    private var exoPlayer: NavPlayer? = null
+    private var exoPlayer: NavTodoPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -336,7 +335,7 @@ class MainActivity : AppCompatActivity() {
                 })
                 binding.todoPlayerLayout.animation = aniSet
                 binding.todoPlayerLayout.visibility = View.VISIBLE
-                exoPlayer = NavPlayer(binding, applicationContext)
+                exoPlayer = NavTodoPlayer(binding, applicationContext)
                 exoPlayer?.initializePlayer()
             }
         } else {
@@ -370,7 +369,7 @@ class MainActivity : AppCompatActivity() {
             val aniSet = aniSetCreate()
             binding.todoPlayerLayout.animation = aniSet
             binding.todoPlayerLayout.visibility = View.VISIBLE
-            exoPlayer = NavPlayer(binding, applicationContext)
+            exoPlayer = NavTodoPlayer(binding, applicationContext)
             exoPlayer?.initializePlayer()
         } else {
             //  (supportFragmentManager.findFragmentByTag(TODO_DETAIL_TAG) as TodoDetailFragment).
