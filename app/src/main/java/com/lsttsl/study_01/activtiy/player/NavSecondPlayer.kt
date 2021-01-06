@@ -23,7 +23,7 @@ class NavSecondPlayer(
 
     private val player: SimpleExoPlayer by lazy { SimpleExoPlayer.Builder(context).build() }
 
-
+    private  var isPlayWhenReady =false
     private val autoCurrentTimeHandler = Handler(Looper.getMainLooper())
     private val autoCurrentRunnable = Runnable {
         isCurrentTime = true
@@ -55,11 +55,13 @@ class NavSecondPlayer(
                 }
                 binding.playBottomNav.playerLeftTime.text = currentPosition.toTimeString(true)
                 isPausePlaying = true
+                isPlayWhenReady=isPausePlaying
 
                 autoCurrentTimeHandler.postDelayed(autoCurrentRunnable, CURRENT_CHECK_TIME)
 
             } else {
                 isPausePlaying = false
+                isPlayWhenReady=isPausePlaying
             }
 
 
@@ -79,7 +81,7 @@ class NavSecondPlayer(
     fun initializePlayer(playUrl: String) {
         preparPlayer(playUrl)
         player.seekTo(0L)
-        player.playWhenReady = true
+        player.playWhenReady = isPlayWhenReady
         player.prepare()
         player.addListener(playerListener)
         //isCurrentTime = true

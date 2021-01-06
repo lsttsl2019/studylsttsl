@@ -293,6 +293,7 @@ class MainActivity : AppCompatActivity() {
         return todoDataList()
     }
 
+    // TODO: 1/6/21    폰트  구글 맵 파이어베이스 데이터 연동.....
 
     private fun aniSetCreate(): AnimationSet {
         val aniSet = AnimationSet(true)
